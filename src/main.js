@@ -2,7 +2,7 @@ import crearGestorVista from "./vistas/crearGestor/crearGestorVista.js";
 import InicioVista from "./vistas/inicio/InicioVista.js";
 import miPerfilGestorVista from "./vistas/miPerfilGestor/miPerfilGestorVista.js";
 import NotFoundVista from "./vistas/not-found/NotFoundVista.js";
-import loginGestorVista from "./vistas/loginGestor/loginGestorVista.js";
+import loginVista from "./vistas/login/loginVista.js";
 // import miPerfilClienteVista from "./vistas/miPerfilCliente/miPerfilClienteVista.js";
 // import crearClienteVista from "./vistas/crearCliente/crearClienteVista.js";
 
@@ -15,7 +15,7 @@ const router = async () => {
     { path: "/", view: InicioVista  },
     { path: "/miPerfilGestor", view: miPerfilGestorVista, hasLogin: true },
     { path: "/crearGestor", view: crearGestorVista, hasLogin: false },
-    { path: "/loginGestor", view: loginGestorVista, hasLogin: false },
+    { path: "/login", view: loginVista, hasLogin: false },
     // { path: "/miPerfilCliente", view: miPerfilClienteVista, hasLogin: true },
     // { path: "/crearCliente", view: crearClienteVista, hasLogin: true },
   ];
@@ -55,7 +55,7 @@ const router = async () => {
     const usuarioIdGuardado = sessionStorage.getItem("miUsuario");
     if (usuarioIdGuardado == null) {
       alert("No has iniciado session");
-      navegarA("/loginGestor");
+      navegarA("/login");
     }
   }
 };

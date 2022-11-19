@@ -6,12 +6,12 @@ export default class extends Vista {
         // es buena práctica utilizar el constructor padre
         super()
         // actualizamos el título
-        this.setTitulo("Login gestor")
+        this.setTitulo("Login")
     }
 
     // sobreescribimos la función getHTML y llamamos a la del padre Vista
     
     async getHTML() {
-        super.getHTML("/loginGestor/loginGestor.html", "/loginGestor/loginGestor.js")
+        super.getHTML("/login/login.html", "/login/login.js")
     }
 }
