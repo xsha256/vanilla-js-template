@@ -11,6 +11,6 @@ export default class extends Vista {
 
     // sobreescribimos la función getHTML y llamamos a la del padre Vista
     async getHTML() {
-        super.getHTML("/crearGestor/crearGestor.html", "/crearGestor/crearGestor.js")
+        super.getHTML("/misClientes/misClientes.html", "/misClientes/misClientes.js")
     }
 }

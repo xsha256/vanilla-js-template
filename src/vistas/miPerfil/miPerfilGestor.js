@@ -1,10 +1,10 @@
 function getMiPerfil() {
-  const usuarioGuardado = sessionStorage.getItem("miUsuario");
+  const usuarioGuardado = sessionStorage.getItem("miUsuarioGestor");
 
   if (usuarioGuardado != null) {
-    const miUsuario = JSON.parse(usuarioGuardado);
-    console.log({ miUsuario });
-    const idGestor = miUsuario.id;
+    const miUsuarioGestor = JSON.parse(usuarioGuardado);
+    console.log({ miUsuarioGestor });
+    const idGestor = miUsuarioGestor.id;
     fetch("http://localhost:8080/gestor/" + idGestor)
       .then((response) => response.json())
       .then((gestor) => {
@@ -20,7 +20,6 @@ function getMiPerfil() {
 
         return (usuario = gestor.usuario);
       });
-    escucharClickLogOuts();
   }
 
   if (usuarioGuardado != null) {
@@ -29,9 +28,9 @@ function getMiPerfil() {
     button.addEventListener("click", (_event) => {
       const password = prompt();
 
-      const miUsuario = JSON.parse(usuarioGuardado);
-      console.log({ miUsuario });
-      const idGestor = miUsuario.id;
+      const miUsuarioGestor = JSON.parse(usuarioGuardado);
+      console.log({ miUsuarioGestor });
+      const idGestor = miUsuarioGestor.id;
 
       fetch("http://localhost:8080/gestor/" + idGestor)
         .then((response) => response.json())
@@ -72,9 +71,9 @@ function getMiPerfil() {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       };
-      const miUsuario = JSON.parse(usuarioGuardado);
-      console.log({ miUsuario });
-      const idGestor = miUsuario.id;
+      const miUsuarioGestor = JSON.parse(usuarioGuardado);
+      console.log({ miUsuarioGestor });
+      const idGestor = miUsuarioGestor.id;
       fetch("http://localhost:8080/gestor/" + idGestor, optionPut)
         .then((response) => response.json())
         .then((gestorEliminado) => {
@@ -83,16 +82,18 @@ function getMiPerfil() {
         });
     });
   }
+
+  if (usuarioGuardado != null) {
+    const button = document.querySelector("#btn-logOut");
+    button.addEventListener("click", (_event) => {
+      //borrar sessionStorage
+      sessionStorage.clear();
+      if (alert("Hasta Luego, " + usuario + "!")) {
+      } else window.location.reload();
+    });
+  }
+  
 }
 
 getMiPerfil();
 
-function escucharClickLogOuts() {
-  const button = document.querySelector("#btn-logOut-gestor");
-  button.addEventListener("click", (_event) => {
-    //borrar sessionStorage
-    sessionStorage.clear();
-    if (alert("Hasta Luego, " + usuario + "!")) {
-    } else window.location.reload();
-  });
-}
